@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const HouseSchema = new Schema({
   capa: String,
   descricao: String,
-  prico: Number,
+  preco: Number,
   localizacao: String,
   status: Boolean,
   user: {
