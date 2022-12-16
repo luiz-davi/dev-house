@@ -1,9 +1,8 @@
-import  { Router } from 'express';
+const  { Router } = require('express');
+const SessionsController = require('./controllers/SessionsController');
 
 const routes = new Router();
 
-routes.get('/', (_, res) => {
-  return res.status(200).json({ ok: true});
-})
+routes.post('/sessions', SessionsController.store);
 
-export default routes;
+module.exports = routes;

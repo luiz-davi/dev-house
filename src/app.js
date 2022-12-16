@@ -1,8 +1,8 @@
-import express from 'express';
-import routes from './routes';
-import mongoose from 'mongoose';
-import 'dotenv/config';
+const express = require('express');
+const routes = require('./routes');
+const mongoose = require('mongoose');
 
+import 'dotenv/config';
 
 class App {
   constructor(){
@@ -13,8 +13,6 @@ class App {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
-    mongoose.set('strictQuery', true);
 
     this.middlewares();
     this.routes();
@@ -29,4 +27,4 @@ class App {
   }
 }
 
-export default new App().server;
+module.exports = new App().server;
