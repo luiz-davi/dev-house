@@ -20,6 +20,7 @@ class HouseController {
     const { filename } = req.file;
     let { descricao, preco, localizacao, status } = req.body;
     status = status || true
+    
     const { user_id } = req.headers;
 
     const casa = await Casa.create({
