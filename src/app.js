@@ -1,6 +1,7 @@
 const express = require('express');
 const routes = require('./routes');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const path = require('path');
 
 import exp from 'constants';
@@ -20,7 +21,8 @@ class App {
     this.routes();
   }
 
-  middlewares(){;
+  middlewares(){
+    this.server.use(cors());
     this.server.use(express.json());
   }
 
