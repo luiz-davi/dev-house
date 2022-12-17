@@ -6,9 +6,7 @@ class HouseController {
   async index(req, res){
     const { status } = req.query;
 
-    console.log(status);
-
-    const casas = await Casa.find({ status });
+    const casas = await Casa.where({ status });
 
     return res.status(200).json({ 
       message: "Casas encontradas!",
