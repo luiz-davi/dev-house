@@ -10,6 +10,10 @@ const HouseSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   }
+}, {
+  toJSON: {
+    virtuals: true
+  }
 });
 
 module.exports = model('House', HouseSchema);

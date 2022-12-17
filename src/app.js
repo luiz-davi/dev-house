@@ -1,7 +1,9 @@
 const express = require('express');
 const routes = require('./routes');
 const mongoose = require('mongoose');
+const path = require('path');
 
+import exp from 'constants';
 import 'dotenv/config';
 
 class App {
@@ -18,7 +20,7 @@ class App {
     this.routes();
   }
 
-  middlewares(){
+  middlewares(){;
     this.server.use(express.json());
   }
 
