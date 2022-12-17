@@ -6,9 +6,9 @@ const ReservaSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  house: {
+  casa: {
     type: Schema.Types.ObjectId,
-    ref: 'Casa'
+    ref: 'House'
   }
 });
 

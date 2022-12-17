@@ -20,7 +20,9 @@ routes.delete('/casas/:id', CasasController.destroy);
 
 routes.get('/dashboard', DashboardController.houses);
 
+routes.post('/reservas/', ReservasController.index);
 routes.post('/reservas/:casa_id/reservar', ReservasController.store);
+routes.delete('/reservas/:reserva_id/cancelar', ReservasController.destroy);
 
 
 module.exports = routes;
