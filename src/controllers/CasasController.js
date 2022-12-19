@@ -1,5 +1,6 @@
 const Casa = require('../models/Casa');
 const User = require('../models/User');
+const yup = require('yup');
 
 class HouseController {
 
@@ -15,11 +16,26 @@ class HouseController {
   }
 
   async store(req, res){
+
+    const schema = yup.object().shape({
+      descricao: yup.string().required(),
+      preco: yup.number().required(),
+      localizacao: yup.string().required(),
+    });
+
     const { filename } = req.file;
     let { descricao, preco, localizacao, status } = req.body;
     status = status || true
     
     const { user_id } = req.headers;
+
+    if(!(await schema.isValid(req.body))){
+      return res.status(400).json({ 
+        error: {
+          message: "Falha na validação!"
+        }
+       })
+    }
 
     const casa = await Casa.create({
       user: user_id,
@@ -37,6 +53,20 @@ class HouseController {
   }
 
   async update(req, res){
+    const schema = yup.object().shape({
+      descricao: yup.string().required(),
+      preco: yup.number().required(),
+      localizacao: yup.string().required(),
+      status: yup.boolean().required()
+    });
+
+    if(!(await schema.isValid(req.body))){
+      return res.status(400).json({ 
+        error: {
+          message: "Falha na validação!"
+        }
+        })
+    }
     const { id } = req.params;
     const { filename } = req.file;
     const { descricao, preco, localizacao, status } = req.body;
