@@ -1,17 +1,18 @@
+import exp from 'constants';
+
+import 'dotenv/config';
+
 const express = require('express');
-const routes = require('./routes');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-
-import exp from 'constants';
-import 'dotenv/config';
+const routes = require('./routes');
 
 class App {
-  constructor(){
+  constructor() {
     this.server = express();
-    
-    mongoose.set("strictQuery", true);
+
+    mongoose.set('strictQuery', true);
     mongoose.connect(`mongodb+srv://ravengar:${process.env.MONGO_PASSWORD}@cluster0.5bagg4g.mongodb.net/devhouse?retryWrites=true&w=majority`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -21,12 +22,12 @@ class App {
     this.routes();
   }
 
-  middlewares(){
+  middlewares() {
     this.server.use(cors());
     this.server.use(express.json());
   }
 
-  routes(){
+  routes() {
     this.server.use(routes);
   }
 }

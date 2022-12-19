@@ -8,12 +8,12 @@ const HouseSchema = new Schema({
   status: Boolean,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
-  }
+    ref: 'User',
+  },
 }, {
   toJSON: {
-    virtuals: true
-  }
+    virtuals: true,
+  },
 });
 
 module.exports = model('House', HouseSchema);

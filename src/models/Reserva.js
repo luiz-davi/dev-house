@@ -1,15 +1,15 @@
-const { Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const ReservaSchema = new Schema({
   data: String,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   casa: {
     type: Schema.Types.ObjectId,
-    ref: 'House'
-  }
+    ref: 'House',
+  },
 });
 
 module.exports = model('Reserva', ReservaSchema);
