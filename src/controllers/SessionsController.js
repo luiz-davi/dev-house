@@ -1,11 +1,26 @@
 const User = require('../models/User')
+const yup = require('yup');
 
 // Métodos: index, show, store, update, destroy
 class SessionsController{
 
   async store(req, res) {
-    const { email } = req.body;
 
+    const schema = yup.object().shape({
+      email: yup.string().email().required()
+    });
+
+    
+    if(!(await schema.isValid(req.body))){
+      return res.status(400).json({ 
+        error: {
+          message: "Falha na validação!"
+        }
+      })
+    }
+    
+    const { email } = req.body;
+    
     // Verificando se o usuário já existe
     let user = await User.findOne({ email });
     

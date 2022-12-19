@@ -53,14 +53,6 @@ class HouseController {
   }
 
   async update(req, res){
-    const { id } = req.params;
-    const { filename } = req.file;
-    const { descricao, preco, localizacao, status } = req.body;
-    const { user_id } = req.headers;
-
-    const user = await User.findById(user_id);
-    const casa = await Casa.findById(id);
-
     const schema = yup.object().shape({
       descricao: yup.string().required(),
       preco: yup.number().required(),
@@ -73,8 +65,15 @@ class HouseController {
         error: {
           message: "Falha na validação!"
         }
-       })
+        })
     }
+    const { id } = req.params;
+    const { filename } = req.file;
+    const { descricao, preco, localizacao, status } = req.body;
+    const { user_id } = req.headers;
+
+    const user = await User.findById(user_id);
+    const casa = await Casa.findById(id);
     
     if(!user){
       return res.status(404).json({
